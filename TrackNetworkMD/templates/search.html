@@ -1,0 +1,48 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+     
+    </head>
+        <body>
+          <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="#welcome">TrackNetworkMD</a>
+              </div>
+              <ul class="nav navbar-nav">
+                <li><a  href="/">Home</a></li>
+                <li><a href="insert">book vaccination</a></li>
+                <li><a  class="active" href="search">Appointment info</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="signin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+              </ul>
+            </div>
+          </nav>
+            <style>
+              .center {
+                margin: auto;
+                width: 60%;
+                padding: 10px;
+                margin-left: 600px;
+              }
+            </style>
+           
+          
+          <img src="https://www.elegantthemes.com/blog/wp-content/uploads/2020/02/find-font-from-image.png" style="height: 45%;width: 45%;margin-left: 400px;padding-bottom: 50px;">
+             <div class="center">
+                <nav class="navbar navbar-light bg-light">
+                  <div class="container-fluid">
+                    <form class="d-flex" method="POST">
+                      <input style="width: 30%;" class="form-control me-2" type="search" placeholder="ID..." name="ID" aria-label="Search">
+                      <button style="margin-left: 90px;margin-top: 20px;" class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                  </div>
+                </nav>
+             </div>
+             <p style="align-self: center;justify-content: center;display: flex;">{{data}}</p> 
+        </body>
+</html>

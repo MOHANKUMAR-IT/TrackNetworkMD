@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head >
+  <meta charset="UTF-8">
+	<title>Corona Tracking and vaccination booking</title>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+			{% for key, value in pi.items() %}
+				{% if value is string %}
+					['{{ key }}', '{{ value }}'],
+				{% else %}
+					['{{ key }}', {{ value }}],
+				{% endif %}
+			{% endfor %}
+        ]);
+
+        var options = {
+          title: 'Corona effect',
+          is3D: true,
+          slices: {  
+          2: {offset: 0.2},
+          3: {offset: 0.3}
+          }
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ 
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='stylesheets/style.css') }}">
+  
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#welcome">TrackNetworkMD</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a class="active" href="/">Home</a></li>
+        <li><a href="insert">book vaccination</a></li>
+        <li><a href="search">Appointment info</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="signin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class='row' style="margin-left: 5px;">
+  <div style="margin: 10px 0 0 10px;">
+    <div class='column'>
+    <h3>Data on Pie Chart</h3>
+    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+  </div>
+  </div>
+  <div class='column'>
+    
+  </div>
+  <img src="https://images.unsplash.com/photo-1612277795421-9bc7706a4a34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80" style="height: 45%;width: 45%;">
+</div>
+  <div class='row' style="margin-left: 5px;">
+  <div class='column'>
+    <h1>Corona Cases till date count:</h1><br>
+    <table class="table" style="background-color: black;color: cornsilk;">
+      <tr>
+        {% for header in heading %}
+        <th>{{ header }}</th>
+        {%endfor%}
+      </tr>
+      {% for row in data %}
+      <tr>
+        {% for column in row %}
+          <td>{{ column }}</td>
+        {% endfor %}
+      </tr>
+        {% endfor %}
+    </table>
+  </div>
+  <div class='column'>
+    <h1>State wise case report</h1><br>
+     
+    <table class="table" style="background-color: black;color: cornsilk;">
+      <tr>
+        {% for header in heading %}
+        <th>{{ header }}</th>
+        {%endfor%}
+      </tr>
+      {% for row in chart %}
+      <tr>
+        {% for column in row %}
+          <td>{{ column }}</td>
+        {% endfor %}
+      </tr>
+        {% endfor %}
+    </table>
+    <form method="POST">
+      <div>
+        <label for="state">State</label>
+        <select type="text" class="form-control" name="state" id="state" >
+        <option selected>Choose...</option>
+        <option> Andhra Pradesh </option>
+            <option>  Assam </option>
+            <option>  Arunachal Pradesh </option>
+            <option>  Bihar </option>
+            <option>  Goa </option>
+            <option>  Gujarat </option>
+            <option>  Jammu and Kashmir </option>
+            <option>  Jharkhand </option>
+            <option>  West Bengal </option>
+            <option>  Karnataka </option>
+            <option>  Kerala </option>
+            <option>  Madhya Pradesh </option>
+            <option>  Maharashtra </option>
+            <option>  Manipur </option>
+            <option>  Meghalaya </option>
+            <option>  Mizoram </option>
+            <option>  Nagaland </option>
+            <option>  Orissa </option>
+            <option>  Punjab </option>
+            <option>  Rajasthan </option>
+            <option>  Sikkim </option>
+            <option>  Tamil Nadu </option>
+            <option>  Tripura </option>
+            <option>  Uttaranchal </option>
+            <option>  Uttar Pradesh </option>
+            <option>  Haryana </option>
+            <option>  Himachal Pradesh </option>
+            <option>  Chhattisgarh </option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+   
+
+
+
+   
+  
+</body>
+</html>
